@@ -30,52 +30,11 @@
         </ul>
     </script>
 
-
-
-
     <script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
     <script type="text/javascript" src="/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="/js/3p/underscore-min.js"></script>
     <script type="text/javascript" src="/js/3p/eventemitter2.js"></script>
     <script type="text/javascript" src="/js/templates.js"></script>
-
-    <script type="text/javascript">
-        (function (win, $, _, Hogan){
-
-            if (!('app' in win)){
-                var cache = {};
-                win.app = {
-                    bus : new EventEmitter2({
-                        "delimeter" : "::",
-                        "wildcard" : "*"
-                    }),
-                    store : {
-                        get : function (key){
-                            return cache[key];
-                        },
-                        set : function (key, value){
-                            cache[key] = value;
-                        }
-                    },
-                    templates : {
-                        main : Hogan.compile($("#main").text()),
-                        todoModal : Hogan.compile($("#todoModal").text()),
-                        todoList : Hogan.compile($("#todoList").text())
-                    },
-                    operations : {
-                        todo : TodoOperation.create(_, win.app.store)
-                    },
-                    controllers : {
-                        todo : TodoController.create(_, win.app.bus, win.app.operations.todo)
-                    },
-                    presenters : {
-                        todo : TodoPresenter.create($, _, win.app.bus, win.app.templates)
-                    }
-                }
-            }
-
-        })(window, jQuery, _, Hogan);
-
-    </script>
+    <script type="text/javascript" src="/js/app.bootstrap.js"></script>
 </body>
 </html>
