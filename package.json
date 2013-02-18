@@ -2,7 +2,7 @@
     "name" : "TodoApplication",
     "version" : "0.0.1",
     "dependencies" : {
-        "express" : "*",
+        "express" : "3.1.0",
         "async" : "*",
         "hogan-express" : "*",
         "EventEmitter2" : "*",
