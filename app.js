@@ -9,3 +9,5 @@ app.enable("view cache");
 app.get("/", function (req, res){
     res.render("index", {partials : {}});
 });
+
+app.start(8080);

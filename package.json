@@ -4,6 +4,7 @@
     "dependencies" : {
         "express" : "*",
         "async" : "*",
+        "hogan-express" : "*",
         "EventEmitter2" : "*",
         "underscore" : "*",
         "hogan.js" : "*"
