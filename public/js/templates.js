@@ -1,0 +1,2 @@
+var templates = {};
+templates.todoModal = new Hogan.Template(function(c,p,i){var _=this;_.b(i=i||"");_.b("<div data-id=\"");_.b(_.v(_.f("id",c,p,0)));_.b("\">");_.b("\n" + i);_.b("    <h3>Todo Item</h3>");_.b("\n" + i);_.b("    <input type=\"text\" id=\"todoName\"value=\"");_.b(_.v(_.f("name",c,p,0)));_.b("\">");_.b("\n" + i);_.b("    <input type=\"text\" id=\"todoDescription\" value=\"");_.b(_.v(_.f("description",c,p,0)));_.b("\">");_.b("\n" + i);_.b("</div>");return _.fl();;});

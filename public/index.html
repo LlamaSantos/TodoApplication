@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+</head>
+<body>
+    <div>
+
+    </div>
+
+    <script id="main" type="text/template">
+        Hello {{name}}<br/>
+    </script>
+
+    <script id="todoModal" type="text/template">
+        <div data-id="{{id}}">
+            <h3>Todo Item</h3>
+            <input type="text" id="todoName"value="{{name}}">
+            <input type="text" id="todoDescription" value="{{description}}">
+        </div>
+    </script>
+
+
+    <script id="todoList" type="text/template">
+        <ul>
+            {{#list}}
+            <li>{{name}} - {{description}}</li>
+            {{/list}}
+        </ul>
+    </script>
+
+
+
+
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+    <script type="text/javascript" src="/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/js/3p/underscore-min.js"></script>
+    <script type="text/javascript" src="/js/3p/eventemitter2.js"></script>
+    <script type="text/javascript" src="/js/templates.js"></script>
+
+    <script type="text/javascript">
+        (function (win, $, _, Hogan){
+
+            if (!('app' in win)){
+                var cache = {};
+                win.app = {
+                    bus : new EventEmitter2({
+                        "delimeter" : "::",
+                        "wildcard" : "*"
+                    }),
+                    store : {
+                        get : function (key){
+                            return cache[key];
+                        },
+                        set : function (key, value){
+                            cache[key] = value;
+                        }
+                    },
+                    templates : {
+                        main : Hogan.compile($("#main").text()),
+                        todoModal : Hogan.compile($("#todoModal").text()),
+                        todoList : Hogan.compile($("#todoList").text())
+                    },
+                    operations : {
+                        todo : TodoOperation.create(_, win.app.store)
+                    },
+                    controllers : {
+                        todo : TodoController.create(_, win.app.bus, win.app.operations.todo)
+                    },
+                    presenters : {
+                        todo : TodoPresenter.create($, _, win.app.bus, win.app.templates)
+                    }
+                }
+            }
+
+        })(window, jQuery, _, Hogan);
+
+    </script>
+</body>
+</html>

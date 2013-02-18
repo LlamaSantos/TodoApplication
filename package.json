@@ -1,0 +1,11 @@
+{
+    "name" : "TodoApplication",
+    "version" : "0.0.1",
+    "dependencies" : {
+        "express" : "*",
+        "async" : "*",
+        "EventEmitter2" : "*",
+        "underscore" : "*",
+        "hogan.js" : "*"
+    }
+}
