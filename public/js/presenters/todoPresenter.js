@@ -10,7 +10,7 @@ var TodoPresenter = (function (){
         $("body").on("click", ".js-todo-add", function (){
             $(".app-root").append(tmpl.todoAddModal.render({}));
             $(".todo-add-modal").modal({
-
+                keyboard: true
             });
         });
 
@@ -28,7 +28,10 @@ var TodoPresenter = (function (){
                     renderBody(tmpl, items);
                 }
 
-                $(".todo-add-modal").remove();
+                $(".todo-add-modal").on("hidden", function (){
+                    $(".todo-add-modal").remove();
+                });
+                $(".todo-add-modal").modal('hide');
             });
         });
 

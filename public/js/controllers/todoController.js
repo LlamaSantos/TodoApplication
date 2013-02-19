@@ -9,7 +9,7 @@ var TodoController = (function (){
                 });
             });
 
-            // -- Wireup adding a todo item
+            // -- Wireup adding a todoitem
             bus.on("todo::add", function (item, presenter){
                 ops.add(item, function (err, todoItems){
                     if (err){
