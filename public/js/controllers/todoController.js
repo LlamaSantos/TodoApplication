@@ -24,11 +24,39 @@ var TodoController = (function (){
             });
 
             // -- Wireup Updating a specific item
-            bus.on("todo:update", ops.update);
+            bus.on("todo::update", function (data, presenter){
+                ops.update(data, function (err, items){
+                    if (err){
+                        presenter(err, items);
+                    }
+                    else {
+                        presenter(null, items);
+                    }
+
+                    bus.emit("todo::update::completed", items);
+                });
+            });
 
             // -- Wireup removing an item
-            bus.on("todo:remove", ops.remove);
+            bus.on("todo::remove", function (data, presenter){
+                ops.remove(data, function (err, items){
+                    if (err){
+                        presenter(err, items);
+                    }
+                    else {
+                        presenter(null, items);
+                    }
 
+                    bus.emit("todo::remove::completed", items);
+                });
+            });
+
+            // -- Wireup fetching a single item
+            bus.on("todo::get", function (data, presenter){
+                ops.get(data, function (err, item){
+                    presenter(err, item);
+                });
+            });
 
             return {
                 setup : true

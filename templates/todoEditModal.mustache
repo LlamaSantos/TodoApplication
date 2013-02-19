@@ -1,8 +1,8 @@
-<div class="modal hide fade todo-add-modal">
+<div class="modal hide fade todo-edit-modal">
 
     <div class="modal-header">
-        <button type="button" data-dismiss="modal" aria-hidden="true" class="close js-todo-add-modal-close">&times;</button>
-        <h3>Add Item</h3>
+        <button type="button" data-dismiss="modal" aria-hidden="true" class="close js-todo-edit-modal-close">&times;</button>
+        <h3>Edit Item # {{id}}</h3>
     </div>
 
     <div class="modal-body">
@@ -24,7 +24,7 @@
     </div>
 
     <div class="modal-footer">
-        <a href="#" class="btn-primary btn-large js-todo-add-modal-save">Save</a>
+        <a href="#" class="btn-primary btn-large js-todo-edit-modal-save" data-id="{{id}}">Save</a>
     </div>
 
 </div>

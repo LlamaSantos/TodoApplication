@@ -32,6 +32,7 @@
                     <th>#id</th>
                     <th>Name</th>
                     <th>Description</th>
+                    <th>Actions</th>
                 </tr>
             </thead>
             {{#items}}
@@ -39,6 +40,10 @@
                 <td>#{{id}}</td>
                 <td>{{name}}</td>
                 <td>{{description}}</td>
+                <td>
+                    <a href="#" class="btn btn-small js-todo-edit" data-id="{{id}}">Edit</a>
+                    <a href="#" class="btn btn-small js-todo-remove" data-id="{{id}}">Delete</a>
+                </td>
             </tr>
             {{/items}}
         </table>

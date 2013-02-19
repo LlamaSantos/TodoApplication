@@ -13,7 +13,7 @@ var TodoOperation = (function (){
 
             return (function (){
                 return {
-                    search : function (filter, done){
+                    search : function search (filter, done){
                         var scope = store.get("todo") || [];
 
                         done(null, _(scope).filter(filter));
@@ -23,7 +23,7 @@ var TodoOperation = (function (){
 
                         done(null, clone(scope));
                     },
-                    add : function (item, done){
+                    add : function add (item, done){
                         if(('name' in item) && ('description' in item)){
                             var scope = store.get("todo") || [];
 
@@ -39,15 +39,16 @@ var TodoOperation = (function (){
                             done("Bad todo item, missing data", clone(scope));
                         }
                     },
-                    update : function (item, done){
+                    update : function update (item, done){
                         if(('name' in item) && ('description' in item)){
+
                             var scope = store.get("todo") || [];
                             var newList = _(scope).reject(function (i){
-                                return i.id == itemFound.id;
+                                return i.id == item.id;
                             });
 
                             newList.push(item);
-                            scope = newList;
+                            scope = _(newList).sortBy(function (item) { return item.id; });
                             store.set("todo", scope);
 
                             done(null, clone(scope));
@@ -56,15 +57,29 @@ var TodoOperation = (function (){
                             done("Bad todo item, missing data");
                         }
                     },
-                    remove : function (item, done){
+                    remove : function remove (item, done){
                         var scope = store.get("todo") || [];
-                        scope = _(scope).reject(function (i){
-                            return i.id = item.id;
-                        });
+                        scope = _.chain(scope).reject(function (i){
+                            return i.id == item.id;
+                        }).sortBy(function (item) { return item.id; }).value();
 
                         store.set("todo", scope);
 
                         done(null, clone(scope));
+                    },
+                    get : function get(item, done){
+                        if ('id' in item){
+
+                            var scope = store.get("todo") || [];
+                            var item = _(scope).find(function (i){
+                                return i.id == item.id;
+                            });
+
+                            done(null, (item ? clone(item) : null));
+                        }
+                        else {
+                            done("id missing from input.", null);
+                        }
                     }
                 }
             })();
