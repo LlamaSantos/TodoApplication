@@ -7,10 +7,10 @@
 * Get all necessary modules
     * From the root of the repository:
 
-            npm install --prod
+        npm install --prod
 * To Run, use the following:
 
-            node app.js
+        node app.js
 
 ##Templates
 Install globally hogan.js to get the hulk command line tool, you can do that by running the following command
